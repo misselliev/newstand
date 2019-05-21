@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class ArticlesController < ApplicationController
-  before_action :current_user
+  before_action :current_user, only: [:index]
+  before_action :require_admin, only: [:edit, :update, :destroy]
   def index
     @articles = Article.all
   end
